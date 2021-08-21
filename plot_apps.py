@@ -6,6 +6,7 @@ import pandas as pd
 geo_path = '/home/budi/indonesian_government/indonesian_province_geospatial/prov.geojson'
 metadata_path = '/home/budi/indonesian_government/apps_screening/province_metadata.csv'
 app_prov_path = '/home/budi/indonesian_government/apps_screening/province_source.csv'
+write_path = '/home/budi/indonesian_government/analysis_result.csv'
 
 prov_df = gpd.read_file(geo_path)
 # prov_df['NAME_1'] = prov_df['NAME_1'].astype(str)
@@ -37,6 +38,7 @@ prov_df['sco_norm']=(prov_df['score']-prov_df['score'].min())/(prov_df['score'].
 prov_df['popular'] = (prov_df['inst_norm']+prov_df['rev_norm']+prov_df['sco_norm'])/3
 print(prov_df)
 
+prov_df.to_csv(write_path)
 
 # set a variable that will call whatever column we want to visualise on the map
 values = 'popular'
